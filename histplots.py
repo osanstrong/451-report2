@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.stats import norm, poisson, binom
+from math import floor, ceil
 
 dat_20x30s:list = [
 383, 
@@ -23,7 +25,7 @@ dat_20x30s:list = [
 345,
 411,
 ]
-print(dat_20x30s)
+# print(dat_20x30s)
 
 dat_200x5s:list = [
 55, 
@@ -227,8 +229,7 @@ dat_200x5s:list = [
 46,
 65,
 ]
-
-print(dat_200x5s)
+# print(dat_200x5s)
 
 # Stats
 def mean(dat_list) -> float:
@@ -246,15 +247,54 @@ def sample_variance(dat_list) -> float:
 def sample_stddev(dat_list) -> float:
     return sample_variance(dat_list)**0.5
 
+def scl(dat_list, factor) -> list:
+    return [factor*dat for dat in dat_list]
 
-print(mean(dat_20x30s))
+# print(mean(dat_20x30s))
+
+select_dat = dat_20x30s
+counts, bins = np.histogram(select_dat)
+dat_mean = mean(select_dat)
+dat_stdev = sample_stddev(select_dat)
+xmin = dat_mean - dat_stdev*4
+xmax = dat_mean + dat_stdev*4
+x = np.linspace(xmin, xmax, 250)
+k = range(ceil(xmin), floor(xmax))
+
+# binom fit is more annoying
+# μ = np
+# s2 = np(1-p) = μ(1-p)
+# 0 = np - np² - s2
+# n = μ/p
+# 0 = μ - μp - s2
+# μp= μ - s2
+# p = (μ-s2) / μ
+p = (dat_mean - dat_stdev**2) / dat_mean
 
 
-counts, bins = np.histogram(dat_20x30s)
+fit_norm = norm.pdf(x,dat_mean, dat_stdev)
+fit_pois = poisson.pmf(k, dat_mean)
+fit_bino = binom.pmf(k, int(dat_mean/p), p)
+# print(f"fit binom: {dat_mean/p}, {p}")
+
+# fit_norm = scl(fitdw_norm, n**2)
+# fit_pois = scl(fit_pois, n**2)
+# fit_bino = scl(fit_bino, n**2)
+
+# mu, std = norm.fit(select_dat)
+# print(f"Manual mean std: {dat_mean}+- {dat_stdev}")
+# print(f"Vs scipy of {mu}+- {std}")
+
 
 
 fig, ax = plt.subplots()
 
-plt.stairs(counts, bins, fill=True)
-# plt.hist(bins[:-1], bins, weights=counts)
+# plt.stairs(counts, bins, label="Actual data")
+plt.plot(x, fit_norm, label="Normal fit")
+# plt.stairs(fit_pois, k, label="Poisson Fit")
+# plt.stairs(fit_bino, k, label="Binomial Fit")
+plt.step(k, fit_pois, label="Poisson Fit")
+plt.step(k, fit_bino, label="Binomial Fit")
+plt.hist(bins[:-1], bins, density=True, weights=counts, fill=False, label="Actual data")
+plt.legend()
 plt.show()
