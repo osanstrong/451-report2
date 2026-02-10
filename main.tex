@@ -18,6 +18,9 @@
 
 \usepackage[letterpaper, margin=1in]{geometry}
 \newcommand{\figwidth}{0.75\linewidth}
+
+\usepackage{placeins} % FloatBarrier
+\usepackage{amsmath} % align
 \begin{document}
 
 \maketitle
@@ -39,10 +42,10 @@ This can, theoretically, be modeled by a Poisson Distribution, which describes t
 \section{Experimental Results}\label{sec:results}
 
 %%%% Experiment 6: Multichannel Analyzer
-\subsection{Experiment 6: Multichannel Analyzer}
+\FloatBarrier\subsection{Experiment 6: Multichannel Analyzer}
 
 % Plot of the acquired spectrum
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[width=\figwidth]{figs/Exp6_4vSpectrum.png}
     \caption{The spectrum acquired from the Multichannel Analyzer with a pulse amplitude of 4V.}
@@ -50,24 +53,113 @@ This can, theoretically, be modeled by a Poisson Distribution, which describes t
 \end{figure}
 
 % "Plots of sample spectra as a function of the pulse amplitude"
-\begin{figure}
+\begin{figure}[!h]
     \centering
-    \includegraphics[width=\figwidth]{figs/Exp6_V_v_chan.png.png}
+    \includegraphics[width=\figwidth]{figs/Exp6_V_v_chan.png}
     \caption{The peak centroid of spectra acquired from the Multichannel Analyzer with pulse amplitudes of varying voltage.}
     \label{fig:exp6-v-v-chan}
 \end{figure}
 
 %%%% Experiment 6: Repeated Measurements
-\subsection{Statistical Uncertainty of a Series of Independent Measurements}
+\FloatBarrier\subsection{Statistical Uncertainty of a Series of Independent Measurements}
+
+Two series of count measurements were performed, of 20 trials lasting 30 seconds each and of 200 trials lasting 5 seconds each.
+For both data series, we calculate the sample mean and standard deviation, and use Method of Moments (MoM) to fit experimental results to theoretical Normal, Poisson, and Binomial distributions.\\
+
+For each series, we calculate experimental mean $\bar{x}$ (where $n\in\{20,200\}$ is the number of measurements, and $x_i$ the (count) value measured for trial $i$):
+\begin{equation}
+    \bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+\end{equation}
+We then calculate the deviation $d_i$ of each point $x_i$:
+\begin{equation}
+    d_i = x_i - \bar{x}
+\end{equation}
+Using these deviations we calculate the sample variance\footnote{As this is the variance of a \emph{sample} and not a known population, the sample mean inherently depends on the specific sample itself, removing a degree of freedom. We thus normalize deviation by $n-1$ rather than by $n$.} $s^2$:
+\begin{equation}
+   s^2 = \frac{1}{n-1}\sum_{i=1}^{n}d_i 
+\end{equation}
+And sample standard deviation:
+\begin{equation}
+    s = \sqrt{s^2}
+\end{equation}
+Using these two `moments', we fit theoretical Normal, Poisson, and Binomial distributions to the data using Method of Moments\cite{kotz_encyclopedia_2006}.
+For the Poisson distribution $Pois(f)$, the theoretical mean $\mu$ is equivalent to the frequency parameter $f$, and we fit ($\hat{f}$) using the sample mean as such:
+\begin{align}
+    \mu &= f = \bar{x}\\
+    \hat{f} &= \bar{x}
+\end{align}
+For the Normal distribution $Norm(\mu, \sigma)$ the moments mean $\mu$ and standard deviation $\sigma$ are themselves parameters, and may be fit to sample values as such:
+\begin{align}
+    \hat{\mu} &= \bar{x} \\
+    \hat{\sigma} &= s \\
+\end{align}
+For the Binomial distribution $Binom(n, p)$ these moments are functions of parameters $n$ and $p$, and may be inverted to fit to sample moments:
+\begin{align}
+    \mu &= np = \bar{x} \\
+    \sigma &= np(1-p) &= s \\
+    &... \\\
+    \hat{n} &= \mathrm{round}\left(\frac{\bar{x}^2}{\bar{x} - s^2}\right) \\
+    \hat{p} &= \bar{x}/\hat{n}
+\end{align}
+
+Histograms of both series' (20 trials lasting 30 seconds each and 200 trials lasting 5 seconds each) results are displayed and compared to analogous histograms of theoretical distributions in Figures~\ref{fig:exp7-30s-hist-v-fits} and \ref{fig:exp7-5s-hist-v-fits}, respectively.
 
 % Histogram of the counts as explained in the text.
-\begin{figure}
+% 20 trials, 30 seconds each
+\begin{figure}[!h]
     \centering
     \includegraphics[width=\figwidth]{figs/Exp7_20x30_hist_v_fits.png}
-    
+    \caption{
+        A histogram of the counts observed over 20 trials each lasting 30 seconds, compared to expected counts under theoretical Normal, Poisson, and Binomial distribution distributions.
+        Theoretical distributions were fit using Method of Moments.
+    }
+    \label{fig:exp7-30s-hist-v-fits}
+\end{figure}
+% 200 trials, 5 seconds each
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\figwidth]{figs/Exp7_200x5_hist_v_fits.png}
+    \caption{
+        A histogram of the counts observed over 200 trials each lasting 5 seconds, compared to expected counts under theoretical Normal, Poisson, and Binomial distribution distributions.
+        Theoretical distributions were fit using Method of Moments.
+    }
+    \label{fig:exp7-5s-hist-v-fits}
 \end{figure}
 
-\section{Discussion}\label{sec:disc}
+Notably, the distribution of 200 5-second trials in Figure~\ref{fig:exp7-5s-hist-v-fits} much more closely resembles theoretical distributions, forming a stable bell curve in contrast to the bimodal distribution seen in Figure~\ref{fig:exp7-30s-hist-v-fits} of the 20 30-second trials.
+Additionally, the Normal and Bimodal distributions almost entirely overlap; this is expected, as at high $n$, Binomial distributions approach that of a Normal distribution with equivalent mean and standard deviation\cite{kotz_encyclopedia_2006}.
+
+
+% Experiment 8: The Accuracy of a Single Measurement
+\FloatBarrier\subsection{Experiment 8: The Accuracy of a Single Measurement}
+
+Detector pulses were counted over a period of 5 minutes while attached to the Source for 5 minutes, and again without the Source for 10 minutes.\\
+
+Over the 5-minute (300 second) Source period, a gross count $n_G$ of 3469 was observed, with an uncertainty of $\sigma_G=\sqrt{n_G}=58.90$.
+This yields a gross count rate $f_G=3469\times(300\mathrm{s})^{-1}=11.562\mathrm{s^{-1}}$.
+Since the error of a scaled function $a\times A$ is equivalent to its error scaled $a\times \sigma_A$\cite{tsoulfanidis_measurement_2015}, this yields a frequency uncertainty $\sigma_{f,G}=300^{-1}\times58.90=0.196\mathrm{s^{-1}}$.\\
+
+Over the 10-minute (600 second) Source-free period, a background count $n_B$ of 386 was observed, with an uncertainty of $\sigma_B=\sqrt{n_B}=19.647$. 
+This yields a background count rate $f_B=386\times(600\mathrm{s})^{-1}=0.643\mathrm{s^{-1}}$, and an error $\sigma_{f,B}=600^{-1}\times19.647=0.00739\mathrm{s^{-1}}$.\\
+
+Assuming infinite timing precision, we may estimate the net activity rate $f_N$ by subtracting $f_B$ from $f_G$:
+\begin{align}
+    f_N &= f_G - f_B \\
+    &= 11.562 - 0.643 \\
+    f_N &= 10.920 \mathrm{s^{-1}}
+\end{align}
+As the variance of a difference $A-B$ is equivalent to the sum of each quantity's variance $\sigma_A^2+\sigma_B^2$\cite{tsoulfanidis_measurement_2015}, we may quantify the uncertainty of this measurement:
+\begin{align}
+    \sigma_f &= \sqrt{\sigma_{f,G}^2 + \sigma_{f,B}^2} \\
+    &= \sqrt{0.196^2 + 0.007^2} \\
+    \sigma_f &= 0.1964 \mathrm{s^{-1}}\\
+\end{align}
+
+The Source's calibrated activity was 1.0 milliCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$.
+Notably, this is dramatically higher than the net \emph{observed} activity of $10.920\pm0.196 \mathrm{s^{-1}}$.
+
+
+\FloatBarrier\section{Discussion}\label{sec:disc}
 \section{Conclusions}\label{sec:conc}
 
 % \bibliographystyle{sty/ieeetran}

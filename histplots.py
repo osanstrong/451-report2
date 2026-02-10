@@ -336,14 +336,17 @@ print(k)
 # 0 = μ - μp - s2
 # μp= μ - s2
 # p = (μ-s2) / μ
-p = (dat_mean - dat_stdev**2) / dat_mean
+# p = (dat_mean - dat_stdev**2) / dat_mean
+# n = int(dat_mean/p)
+n = int(dat_mean**2 / (dat_mean - dat_stdev**2))
+p = dat_mean / n #Fix to fit the mean while keeping integer 
 
 
 # fit_norm = norm.pdf(x,dat_mean, dat_stdev) * norm_scl
 fit_norm = scl_to_data(norm.pdf(k, dat_mean, dat_stdev))
 print(f"K used: {k}")
 fit_pois = scl_to_data(poisson.pmf(k, dat_mean))
-fit_bino = scl_to_data(binom.pmf(k, int(dat_mean/p), p))
+fit_bino = scl_to_data(binom.pmf(k, n, p))
 
 sum_norm = rediscretize(k, fit_norm, bins)
 print(sum_norm)
