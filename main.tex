@@ -32,13 +32,31 @@
 
 \subsection{Geiger-Muller (GM) Detector}
 
+\subsection{Multichannel Analyzer (MCA)}
+
 \subsection{Counting Statistics}
 A key variable of interest in this laboratory is the number of counts measured by the system in a fixed period of time.
-This can, theoretically, be modeled by a Poisson Distribution, which describes the number of random events taking place in a fixed time period.
+This can, theoretically, be modeled by a Poisson Distribution, which describes the number of random events taking place in a fixed time period.\\
 
-
+A Poisson distribution $Pois(f)$ for a time period is parameterized by $f$, the expected frequency per that time period.
+If we assume the likelihood of observing some number of counts can be modeled by this distribution, then we expect those measurements to vary by this distribution's standard deviation $\sigma_P$\cite{kotz_encyclopedia_2006}:
+\begin{equation}
+    \sigma_P = \sqrt{f}
+\end{equation}
+By assuming a theoretical frequency similar enough to that experimentally observed, uncertainty of a radiation count $N$ can thus be estimated as $\sigma_N=\sqrt{N}$.
 
 \section{Experimental Procedure}\label{sec:methods}
+Certain new equipment was used in this laboratory, to be detailed as follows:
+\subsection{Geiger-Muller Detector}
+In this laboratory, we use a Geiger-Muller Detector, henceforth referred to as the Detector. 
+We were unable to locate identifying information on this device.
+
+\subsection{Multichannel Analyzer}
+We use an Ortec EasyMCA MCA, with inventory number P10F79090. This MCA will henceforth be referred to the MCA, or Multichannel Analyzer.
+
+\subsection{Radiation Source}
+In this laboratory, we use a [DETAILS] source numbered 2037, and will henceforth be referred to as the Source.
+
 \section{Experimental Results}\label{sec:results}
 
 %%%% Experiment 6: Multichannel Analyzer
