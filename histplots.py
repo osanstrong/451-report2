@@ -253,13 +253,26 @@ def scl(dat_list, factor) -> list:
 # print(mean(dat_20x30s))
 
 select_dat = dat_20x30s
-counts, bins = np.histogram(select_dat)
 dat_mean = mean(select_dat)
 dat_stdev = sample_stddev(select_dat)
+
 xmin = dat_mean - dat_stdev*4
 xmax = dat_mean + dat_stdev*4
+
+# Now make bins manually
+nb = 20
+bins = np.linspace(xmin, xmax, nb)
+bw = (xmax-xmin)/nb
+norm_scl = len(select_dat)*bw
+
+
+counts, bins = np.histogram(select_dat, bins=bins)
+print(f"{len(counts)} vs {len(bins)}")
 x = np.linspace(xmin, xmax, 250)
-k = range(ceil(xmin), floor(xmax))
+# k = range(ceil(xmin), floor(xmax))
+k = [int((bins[i]+bins[i+1])*0.5) for i in range(len(bins)-1)] #halfway through each bin, rough approximation
+k = [int(b) for b in bins[1:]]
+print(k)
 
 # binom fit is more annoying
 # μ = np
@@ -272,9 +285,10 @@ k = range(ceil(xmin), floor(xmax))
 p = (dat_mean - dat_stdev**2) / dat_mean
 
 
-fit_norm = norm.pdf(x,dat_mean, dat_stdev)
-fit_pois = poisson.pmf(k, dat_mean)
-fit_bino = binom.pmf(k, int(dat_mean/p), p)
+# fit_norm = norm.pdf(x,dat_mean, dat_stdev) * norm_scl
+fit_norm = norm.pdf(k, dat_mean, dat_stdev) * norm_scl
+fit_pois = poisson.pmf(k, dat_mean) * norm_scl
+fit_bino = binom.pmf(k, int(dat_mean/p), p) * norm_scl
 # print(f"fit binom: {dat_mean/p}, {p}")
 
 # fit_norm = scl(fitdw_norm, n**2)
@@ -285,16 +299,37 @@ fit_bino = binom.pmf(k, int(dat_mean/p), p)
 # print(f"Manual mean std: {dat_mean}+- {dat_stdev}")
 # print(f"Vs scipy of {mu}+- {std}")
 
+distributions:dict = {
+    "Experimental Trials": counts,
+    "Poisson Fit": fit_pois,
+    "Normal Fit": fit_norm,
+    "Binomial Fit": fit_bino,
+}
+
 
 
 fig, ax = plt.subplots()
 
+for d in distributions:
+    plt.fill_between(bins[1:], distributions[d], step="pre", alpha=0.3)
+
+for d in distributions:
+    plt.step(bins[1:], distributions[d], label=d)
+
 # plt.stairs(counts, bins, label="Actual data")
-plt.plot(x, fit_norm, label="Normal fit")
+# plt.plot(x, fit_norm, label="Normal fit")
 # plt.stairs(fit_pois, k, label="Poisson Fit")
 # plt.stairs(fit_bino, k, label="Binomial Fit")
-plt.step(k, fit_pois, label="Poisson Fit")
-plt.step(k, fit_bino, label="Binomial Fit")
-plt.hist(bins[:-1], bins, density=True, weights=counts, fill=False, label="Actual data")
+
+# plt.step(bins[1:], [c for c in counts], label="Actual data")
+# plt.step(bins[1:], fit_norm, label="Normal Fit")
+# plt.step(bins[1:], fit_pois, label="Poisson Fit")
+# plt.step(bins[1:], fit_bino, label="Binomial Fit")
+# plt.hist(bins[:-1], bins, weights=fit_bino, fill=False, label="Binomial fit")
+# plt.hist(bins[:-1], bins, weights=fit_pois, fill=False, label="Poisson fit")
+# plt.hist(bins[:-1], bins, density=True, weights=counts, fill=False, label="Actual data")
+
+plt.xlabel("Counts in Trial")
+plt.ylabel("Number of Trials")
 plt.legend()
 plt.show()
