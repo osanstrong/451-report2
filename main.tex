@@ -31,31 +31,179 @@
 \section{Introduction and Background}\label{sec:intr}
 
 \subsection{Geiger-Muller (GM) Detector}
+In this laboratory we use a Geiger-Muller (GM) Detector.
+A GM detector (referred to by the textbook as a GM counter) is a gas-filled detector, usually cylindrical in shape, in which one radiation detection triggers an avalanche of charge interactions to produce a signal independent of the first gas atom ionized.\cite{tsoulfanidis_measurement_2015} \\
+
+This laboratory only makes introductory use of a GM detector, and more background about their function will be provided in the next laboratory, which will explore aspects such as dead time in more detail.
 
 \subsection{Multichannel Analyzer (MCA)}
+A Multichannel Analyzer takes incoming pulses and categorizes them into several channels (sometimes referred to as bins) based on their amplitude.\cite{tsoulfanidis_measurement_2015}
+These bins may be presented in the form of a histogram called a spectrum, where the x-axis corresponds to the channel number, and the y-axis the number of counts sorted into that channel.
+By calibrating the multichannel analyzer, each of these bins may be associated with a specific voltage or quantity of interest, but in this laboratory we will only focus on introductory use of this device.
 
 \subsection{Counting Statistics}
 A key variable of interest in this laboratory is the number of counts measured by the system in a fixed period of time.
 This can, theoretically, be modeled by a Poisson Distribution, which describes the number of random events taking place in a fixed time period.\\
-
-A Poisson distribution $Pois(f)$ for a time period is parameterized by $f$, the expected frequency per that time period.
-If we assume the likelihood of observing some number of counts can be modeled by this distribution, then we expect those measurements to vary by this distribution's standard deviation $\sigma_P$\cite{kotz_encyclopedia_2006}:
+\subsubsection{Poisson Distribution}
+A Poisson distribution $Pois(\lambda)$ for a time period is parameterized by $\lambda$, the expected number of events during that time period.
+The likelihood of a certain number $x$ of such events happening during one time period can be found by using the distribution's probability mass function $p(x;\lambda)$\cite{nist_1366_nodate}:
 \begin{equation}
-    \sigma_P = \sqrt{f}
+    p(x;\lambda) = \frac{e^{-\lambda}\lambda^x}{x!}, x\in\{0, 1, 2, ...\}
+\end{equation}
+If we assume the likelihood of observing some number of counts can be modeled by this distribution, then we expect those measurements to vary by this distribution's standard deviation $\sigma_P$\cite{nist_1366_nodate}:
+\begin{equation}
+    \sigma_P = \sqrt{\lambda}
 \end{equation}
 By assuming a theoretical frequency similar enough to that experimentally observed, uncertainty of a radiation count $N$ can thus be estimated as $\sigma_N=\sqrt{N}$.
 
+\subsubsection{Normal Distribution}
+Another distribution that may be of interest is the Normal Distribution.
+The normal distribution can be used to model the results of a wide variety of random circumstances, and is parameterized directly by a distribution mean $\mu$ and standard deviation $\sigma$.
+The differential probability density $f(x)$ of a given quantity $x$ being sampled from a normal distribution $Norm(\mu, \sigma)$ may be found \cite{nist_1366_nodate}:
+\begin{equation}
+    f(x) = \frac{e^{-(x-\mu)^2}/(2\sigma^2)}{\sigma\sqrt{2\pi}}
+\end{equation}
+
+\subsubsection{Binomial Distribution}
+Finally, we consider a third potential distribution of interest, the Binomial Distribution. \\
+
+Suppose rather than being modeled by independent random detections, the counts $x$ of a detector were better modeled as the number of \emph{successful} detections, where a \emph{fixed} number $n$ of events occur, but only some average proportion $p$ are successfully detected. 
+The counts could then be modeled using a binomial distribution $Binom(n, p)$, with the probability mass function $p(x;n,p)$\cite{nist_1366_nodate}:
+\begin{equation}
+    \left(\frac{n!}{x!(n-x)!}\right)(p)^x(1-p)^{(n-x)}, x\in{0,1,2,...,n}
+\end{equation}
+
+This binomial distribution would have an expected mean of $np$, and standard deviation of $\sqrt{np(1-p)}$.\\
+
 \section{Experimental Procedure}\label{sec:methods}
-Certain new equipment was used in this laboratory, to be detailed as follows:
-\subsection{Geiger-Muller Detector}
-In this laboratory, we use a Geiger-Muller Detector, henceforth referred to as the Detector. 
+
+\subsection{Equipment}
+In this laboratory, we employ the following equipment:
+
+\subsubsection{Module Rack}
+
+In this experiment, a Canberra Model 2000 module rack was used (inventory number NE759377). This component will be henceforth referred to as the Module Rack.
+
+\subsubsection{Geiger-Muller Detector}
+In this laboratory, we use a GM Detector, henceforth referred to as the Detector. 
 We were unable to locate identifying information on this device.
 
-\subsection{Multichannel Analyzer}
+\subsubsection{Multichannel Analyzer}
 We use an Ortec EasyMCA MCA, with inventory number P10F79090. This MCA will henceforth be referred to the MCA, or Multichannel Analyzer.
 
-\subsection{Radiation Source}
-In this laboratory, we use a [DETAILS] source numbered 2037, and will henceforth be referred to as the Source.
+\subsubsection{Radiation Source}
+In this laboratory, we use a 2017 1.0 microCurie cesium-137 beta radiation source, numbered 2037, and will henceforth refer to this as the Source.
+
+\subsubsection{Programmable Power Supply}
+To supply the inverter which follows the Detector, we use a Caen N1470AL 2CH High Voltage Programmable Power Supply (Inventory \# P10G96054), henceforth referred to as the Power Supply.
+
+\subsubsection{Pulser}
+In this laboratory, we use an Ortec Model 480 Pulser.
+This particular pulser will henceforth be referred to as the Pulser, to distinguish from pulsers in general.
+A serial number tag was not attached externally, and the module could not be removed to identify the Illinois property number on its side.
+
+
+\subsubsection{Oscilloscope}
+
+In this laboratory, we use an Infiniivision DSO-X 2002A Oscilloscope (inventory \# P10R03513).
+The particular oscilloscope used in this experiment will henceforth be referred to as the Oscilloscope.
+
+
+\subsubsection{Counter}
+
+We use an Ortec Model 871 Timer-Counter (serial \# 1024), which will henceforth be referred to as the Counter.
+
+\subsubsection{Preamplifier}
+In this laboratory, we use an Ortec 142PC preamplifier (serial \# 2780, revision 17), henceforth referred to as the Preamplifier.
+No Illinois property number was identifiable on the Preamplifier.
+
+\subsubsection{Amplifier}
+
+We use an Ortec Model 590A Amplifier and Timing Single Channel Analyzer (AMP \& TSCA, serial \# 16076205), and is henceforth referred to as the Amplifier.
+
+\subsubsection{Computer}
+
+In this laboratory, we use a Dell Precision 3630, henceforth referred to as the Computer.
+The Computer's Engineering IT ID is EWS 20426, and Dell service ID is 6TT6243.
+
+\subsubsection{Software: Maestro}
+
+To interpret and display output from the MCA, we use the Maestro software provided by Ortect.\cite{ortec_maestro_2012}
+
+\subsection{Experiment 6: The Multichannel Analyzer}
+
+In this experiment, we use the Pulser to replicate the output of a spectroscopy detector.
+We feed its output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\cite{npre_lab_2_manual_2025}\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\figwidth]{figs/Mat0_Exp6-setup.png}
+    \caption{The setup for Experiment 6. Sourced from Lab Manual 2.\cite{npre_lab_2_manual_2025}}
+    \label{fig:mat-exp6-setup}
+\end{figure}
+
+We first log into the lab computer and start Maestro, ensuring the MCA is connected to the computer before configuring the equipment as shown in Figure~\ref{fig:mat-exp6-setup}.
+We set the Amplifier gain to its lowest value, and adjust the Pulser gain to find the maximum attainable pulse voltage, then to achieve approximately 25\% of that pulse voltage.\\
+
+We set the collect time in Maestro to 1 minute before pressing the Start Acquisition button, as shown in Figure~\ref{fig:start-acquisition}
+We then click on the spectrum as shown in Figure~\ref{fig:mat-sample-spectrum} to show channel number and count, or right click to identify precise peak details as in Figure~\ref{mat-peak-info} to record details such as the centroid of a peak.\\
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\figwidth]{figs/Mat1_StartAcquisition.png}
+    \caption{The button to start spectrum acquisition in Maestro, highlighted by a red box. Visible next to this button is the manual stop button (with a stop sign), though this button is only necessary if the user desires to stop acquisition before the set time is reached.}
+    \label{fig:mat-start-acquisition}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\figwidth]{figs/Mat2_MCA-Spectrum.png}
+    \caption{An example of how Maestro displays an acquired spectrum. Clicking on the spectrum places a line over the nearest channel, revealing the channel number and the number of counts recorded under that channel.}
+    \label{fig:mat-sample-spectrum}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\linewidth]{figs/Mat3_peak-id.png}
+    \caption{Peak information as displayed by Maestro, found by right-clicking on a peak and selecting ``Peak Info''}
+    \label{fig:mat-peak-info}
+\end{figure}
+
+In this way, we record the centroid of the peak of the spectrum produced using a pulse amplitude voltage approximately 25\% of the maximum, then repeat for 3 more pulse amplitudes, each time recording the acquired spectrum and the centroid of the identified peak.
+
+\subsection{Experiment 7: Statistical Uncertainty of a Series of Independent Measurements}
+
+In this experiment, two series of independent radiation counts are measured, using the experimental setup shown in Figure~\ref{fig:mat-exp7-setup}. \\
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\figwidth]{figs/Mat4_Exp7-setup.png}
+    \caption{The setup for experiment 7. The connection to the Oscilloscope is dotted to signify that while the Oscilloscope may be used to debug signals sent to the Counter, it is not crucial to the experiment and may be removed afterwards.}
+    \label{fig:mat-exp7-setup}
+\end{figure}
+
+
+After acquiring the Source from the lab instructors, we remove the cap from the Detector and tape the Source to the Detector front, with the sticker side of the Source facing the center of the Detector.
+We then ensure all equipment is connected as in Figure~\ref{fig:mat-exp7-setup}.
+With assistance from the TA to choose an appropriate bias setting for the Detector, we set the Power Supply to this setting, slowly incrementing the knob one setting at a time to avoid the risk of damaging the Detector. \\
+
+Once the Detector is ready, we then set the timer on the Counter to 30 seconds, start the timer and recording the number of counts after completion. 
+We repeat this process for 19 further trials, recording the counts from a total of 20 trials each lasting 30 seconds.
+Additionally, in the same fashion we perform a second series, with 200 trials each measuring counts over 5 seconds.
+We compare these series of radiation counts to poisson, normal, and binomial distributions fit to these series of sample data.
+
+\subsection{Experiment 8: Accuracy of a Single Measurement}
+
+In this experiment we perform one source and one background measurement to estimate the net activity of the Source.\\
+
+We begin by reusing the setup for experiment 7, shown in Figure~\ref{fig:mat-exp7-setup}. 
+We set the Counter to record for 5 minutes (300 seconds) with the Source still attached to the Detector, and record the number of counts measured after this time as the Gross Count.\\
+
+We then remove the Source from the Detector, returning it to the TA and ensuring there are no sources remaining near the Detector.
+Setting the Counter to record for 10 minutes (600 seconds) with the Source no longer attached to the Detector, we record the number of counts measured after this time as the Background Count.
+After completing these measurements, we slowly ramp down the bias on the Power Supply.\\
+
+Using the Gross and Background Counts, we estimate a net activity and calculate the associated uncertainty, to compare with the calibrated activity of the Source.\\
+
 
 \section{Experimental Results}\label{sec:results}
 
@@ -101,10 +249,10 @@ And sample standard deviation:
     s = \sqrt{s^2}
 \end{equation}
 Using these two `moments', we fit theoretical Normal, Poisson, and Binomial distributions to the data using Method of Moments\cite{kotz_encyclopedia_2006}.
-For the Poisson distribution $Pois(f)$, the theoretical mean $\mu$ is equivalent to the frequency parameter $f$, and we fit ($\hat{f}$) using the sample mean as such:
+For the Poisson distribution $Pois(\lambda)$, the theoretical mean $\mu$ is equivalent to the frequency parameter $\lambda$, and we fit ($\hat{\lambda}$) using the sample mean as such:
 \begin{align}
-    \mu &= f = \bar{x}\\
-    \hat{f} &= \bar{x}
+    \mu &= \lambda = \bar{x}\\
+    \hat{\lambda} &= \bar{x}
 \end{align}
 For the Normal distribution $Norm(\mu, \sigma)$ the moments mean $\mu$ and standard deviation $\sigma$ are themselves parameters, and may be fit to sample values as such:
 \begin{align}
@@ -173,7 +321,7 @@ As the variance of a difference $A-B$ is equivalent to the sum of each quantity'
     \sigma_f &= 0.1964 \mathrm{s^{-1}}\\
 \end{align}
 
-The Source's calibrated activity was 1.0 milliCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$.
+The Source's calibrated activity was 1.0 microCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$.
 Notably, this is dramatically higher than the net \emph{observed} activity of $10.920\pm0.196 \mathrm{s^{-1}}$.
 
 
