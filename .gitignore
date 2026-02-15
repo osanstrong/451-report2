@@ -9,3 +9,5 @@
 sty/ieeetran.bst
 **:mshield
 **:Zone.Identifier
+**.out
+**.toc
