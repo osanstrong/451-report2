@@ -196,7 +196,7 @@ We fed pulser output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\\
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\figwidth]{figs/Mat0_Exp6-setup.png}
-    \caption{The setup for Experiment 6. Sourced from lab manual 2.\cite{npre_lab_2_manual_2025}}
+    \caption{The setup for experiment 6. Sourced from lab manual 2.\cite{npre_lab_2_manual_2025}}
     \label{fig:mat-exp6-setup}
 \end{figure}
 
@@ -333,6 +333,7 @@ For the Binomial distribution $Binom(n, p)$ these moments are functions of param
 \end{align}
 
 Histograms of both series' (20 trials lasting 30 seconds each and 200 trials lasting 5 seconds each) results are displayed and compared to analogous histograms of theoretical distributions in Figures~\ref{fig:exp7-30s-hist-v-fits} and \ref{fig:exp7-5s-hist-v-fits}, respectively.
+The specific \texttt{Python} script used to perform these calculations is made public and linked in Appendix~\ref{app:script}.
 
 % Histogram of the counts as explained in the text.
 % 20 trials, 30 seconds each
@@ -495,6 +496,35 @@ Where a detail could not be identified for a given device, it is replaced with `
     \end{enumerate}
 \end{table}
 \FloatBarrier
+
+\section{Calculation Script}\label{app:script}
+A \texttt{Python} script \texttt{histplots.py} was created to perform and record the calculations of experiment 8. The script may be observed at:\\
+
+\url{https://github.com/osanstrong/451-report2/blob/main/histplots.py}\\
+
+A summary of important calculations is provided below:
+\begin{verbatim}
+# Stats
+def mean(dat_list) -> float:
+    return sum(dat_list) / len(dat_list)
+
+def deviations(dat_list) -> list[float]:
+    dat_mean = mean(dat_list)
+    return [(n-dat_mean) for n in dat_list]
+
+def sample_variance(dat_list) -> float:
+    devs = deviations(dat_list)
+    n = len(dat_list)
+    return sum([dev*dev for dev in devs]) / (n-1)
+
+def sample_stddev(dat_list) -> float:
+    return sample_variance(dat_list)**0.5
+
+def scl(dat_list, factor) -> list:
+    return [factor*dat for dat in dat_list]
+
+
+\end{verbatim}
 
 % \bibliographystyle{sty/ieeetran}
 \printbibliography
