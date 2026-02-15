@@ -256,6 +256,8 @@ select_dat = dat_20x30s
 dat_mean = mean(select_dat)
 dat_stdev = sample_stddev(select_dat)
 
+print(f"Data mean: {dat_mean}, variance: {dat_stdev**2}")
+
 xmin = dat_mean - dat_stdev*4
 xmax = dat_mean + dat_stdev*4
 
