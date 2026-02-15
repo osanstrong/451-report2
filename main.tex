@@ -158,7 +158,7 @@ We used an Ortec EasyMCA multichannel analyzer, which we will henceforth refer t
 In this laboratory, we used a 2017 1.0 \micCi cesium-137 beta radiation source, and will henceforth refer to it as the beta source.
 
 \subsubsection{Programmable Power Supply}
-To supply the inverter which follows the Detector, we used a Caen N1470AL 2CH High Voltage Programmable Power Supply, henceforth referred to as the power supply.
+To supply the inverter which follows the detector, we used a Caen N1470AL 2CH High Voltage Programmable Power Supply, henceforth referred to as the power supply.
 
 \subsubsection{Pulser}
 In this laboratory, we used an Ortec Model 480 Pulser, henceforth called the pulser.
@@ -176,15 +176,15 @@ We used an Ortec Model 871 Timer-Counter, which will henceforth be referred to a
 
 \subsubsection{Preamplifier}
 In this laboratory, we used an Ortec 142PC Preamplifier, henceforth referred to as the preamplifier.
-No Illinois property number was identifiable on the Preamplifier.
+No Illinois property number was identifiable on the preamplifier.
 
 \subsubsection{Amplifier}
 
-We used an Ortec Model 590A Amplifier and Timing Single Channel Analyzer, henceforth referred to as the Amplifier.
+We used an Ortec Model 590A Amplifier and Timing Single Channel Analyzer, henceforth referred to as the amplifier.
 
 \subsubsection{Computer}
 
-In this laboratory, we used a Dell Precision 3630, henceforth referred to as the Computer.
+In this laboratory, we used a Dell Precision 3630, henceforth referred to as the computer.
 
 \subsubsection{Software: Maestro}
 
@@ -192,8 +192,8 @@ To interpret and display output from the MCA, we used the Maestro software provi
 
 \subsection{Experiment 6: The Multichannel Analyzer}
 
-In this experiment, we used the Pulser to replicate the output of a spectroscopy detector.
-We fed its output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\\
+In this experiment, we used the pulser to observe voltage-dependent behavior of the MCA.
+We fed pulser output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\\
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\figwidth]{figs/Mat0_Exp6-setup.png}
@@ -202,7 +202,7 @@ We fed its output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\\
 \end{figure}
 
 We first logged into the lab computer and started Maestro, ensuring the MCA was connected to the computer before configuring the equipment as shown in Figure~\ref{fig:mat-exp6-setup}.
-We set the Amplifier gain to its lowest value, and adjusted the Pulser gain to find the maximum attainable pulse voltage, then to achieve approximately 25\% of that pulse voltage.\\
+We set the amplifier gain to its lowest value, and adjusted the pulser gain to find the maximum attainable pulse voltage, then to achieve approximately 25\% of that pulse voltage.\\
 
 We set the collect time in Maestro to 1 minute before pressing the Start Acquisition button, as shown in Figure~\ref{fig:start-acquisition}
 We then clicked on the spectrum as shown in Figure~\ref{fig:mat-sample-spectrum} to show channel number and count, or right clicked to identify precise peak details as in Figure~\ref{mat-peak-info} to record details such as the centroid of a peak.\\
@@ -237,26 +237,26 @@ In this experiment, we measured two series of independent radiation counts, usin
 \begin{figure}
     \centering
     \includegraphics[width=\figwidth]{figs/Mat4_Exp7-setup.png}
-    \caption{The setup for experiment 7. The connection to the Oscilloscope is dotted to signify that while the Oscilloscope may be used to debug signals sent to the Counter, it is not crucial to the experiment and may be removed afterwards.}
+    \caption{The setup for experiment 7. The connection to the oscilloscope is dotted to signify that while the oscilloscope may be used to debug signals sent to the counter, it is not crucial to the experiment and may be removed afterwards.}
     \label{fig:mat-exp7-setup}
 \end{figure}
 
 
-After acquiring the Source from the lab instructors, we removed the cap from the detector and taped the Source to the detector front, with the sticker side of the Source facing the center of the detector.
+After acquiring the beta source from the lab instructors, we removed the cap from the detector and taped the source to the detector front, with the sticker side of the source facing the center of the detector.
 We then ensure all equipment is connected as in Figure~\ref{fig:mat-exp7-setup}.
-With assistance from the TA to choose an appropriate bias setting for the detector, we then set the Power Supply to this setting, slowly incrementing the knob one setting at a time to avoid the risk of damaging the detector. (Specifically, using the clear dial at the top: Rotating the dial either changed a digit's value or selected a new digit, with pressing the dial toggling between these two nodes. While selecting the ``VSET'' option, the former function instead switched between setting voltage bias and ramping the voltage to its new setting) \\
+With assistance from the TA to choose an appropriate bias setting for the detector, we then set the power supply to this setting, slowly incrementing the knob one setting at a time to avoid the risk of damaging the detector. (Specifically, using the clear dial at the top: Rotating the dial either changed a digit's value or selected a new digit, with pressing the dial toggling between these two nodes. While selecting the ``VSET'' option, the former function instead switched between setting voltage bias and ramping the voltage to its new setting) \\
 
-Once the detector was ready, we then set the timer on the Counter to 30 seconds, started the timer and recorded the number of counts after completion. 
+Once the detector was ready, we then set the timer on the counter to 30 seconds, started the timer and recorded the number of counts after completion. 
 We repeated this process for 19 further trials, recording the counts from a total of 20 trials each lasting 30 seconds.
 Additionally, in the same fashion we performed a second series, with 200 trials each measuring counts over 5 seconds.
 We compared these series of radiation counts to poisson, normal, and binomial distributions fit to these series of sample data.
 
 \subsection{Experiment 8: Accuracy of a Single Measurement}
 
-In this experiment we performed one source and one background measurement to estimate the net activity of the Source.\\
+In this experiment we performed one source and one background measurement to estimate the net activity of the beta source.\\
 
 We began by reusing the setup for experiment 7, shown in Figure~\ref{fig:mat-exp7-setup}. 
-We set the Counter to record for 5 minutes (300 seconds) with the Source still attached to the detector, and recorded the number of counts measured after this time as the gross count.\\
+We set the counter to record for 5 minutes (300 seconds) with the source still attached to the detector, and recorded the number of counts measured after this time as the gross count.\\
 
 We then removed the beta source from the detector, returning it to the TA and ensuring there were no sources remaining near the detector.
 Setting the counter to record for 10 minutes (600 seconds) with the beta source no longer attached to the detector, we recorded the number of counts measured after this time as the background count.
@@ -363,13 +363,13 @@ Histograms of both series' (20 trials lasting 30 seconds each and 200 trials las
 % Experiment 8: The Accuracy of a Single Measurement
 \FloatBarrier\subsection{Experiment 8: The Accuracy of a Single Measurement}
 
-Detector pulses were counted over a period of 5 minutes while attached to the Source for 5 minutes, and again without the Source for 10 minutes.\\
+Detector pulses were counted over a period of 5 minutes while attached to the beta source for 5 minutes, and again without the source for 10 minutes.\\
 
-Over the 5-minute (300 second) Source period, we observed gross count $n_G$ of 3469, with an uncertainty of $\sigma_G=\sqrt{n_G}=58.90$.
+Over the 5-minute (300 second) source period, we observed gross count $n_G$ of 3469, with an uncertainty of $\sigma_G=\sqrt{n_G}=58.90$.
 This yields a gross count rate $f_G=3469\times(300\mathrm{s})^{-1}=11.562\mathrm{s^{-1}}$.
 Since the error of a scaled function $a\times A$ is equivalent to its error scaled $a\times \sigma_A$\cite{tsoulfanidis_measurement_2015}, this yields a frequency uncertainty $\sigma_{f,G}=300^{-1}\times58.90=0.196\mathrm{s^{-1}}$.\\
 
-Over the 10-minute (600 second) Source-free period, we observed a background count $n_B$ of 386, with an uncertainty of $\sigma_B=\sqrt{n_B}=19.647$. 
+Over the 10-minute (600 second) source-free period, we observed a background count $n_B$ of 386, with an uncertainty of $\sigma_B=\sqrt{n_B}=19.647$. 
 This yields a background count rate $f_B=386\times(600\mathrm{s})^{-1}=0.643\mathrm{s^{-1}}$, and an error $\sigma_{f,B}=600^{-1}\times19.647=0.00739\mathrm{s^{-1}}$.\\
 
 Assuming infinite timing precision, we estimated the net activity rate $f_N$ by subtracting $f_B$ from $f_G$:
@@ -385,7 +385,7 @@ As the variance of a difference $A-B$ is equivalent to the sum of each quantity'
     \sigma_f &= 0.1964 \mathrm{s^{-1}}\\
 \end{align}
 
-The Source's calibrated activity was 1.0 microCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$.
+The beta source's calibrated activity was 1.0 microCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$.
 Notably, this is dramatically higher than the net \emph{observed} activity of $10.920\pm0.196 \mathrm{s^{-1}}$.
 
 
@@ -413,7 +413,7 @@ Additionally, the source was calibrated in 2017: given the $^{137}$Cs half life 
 \section{Conclusions}\label{sec:conc}
 The laboratory was broadly successful. 
 Spectra of 60-second pulser outputs were recorded at different output amplitudes.
-A series of 20 radiation counts were taken by a Geiger-Muller detector of a beta source over 30 seconds each, followed by a series of 200 5-second counts, and modeled by Poisson, binomial, and normal models.
+A series of 20 radiation counts were taken by a GM detector of a beta source over 30 seconds each, followed by a series of 200 5-second counts, and modeled by Poisson, binomial, and normal models.
 Radiation counts were measured for the same detector and source over 5 minutes, followed by a background count of the detector without the source over 10 minutes, and used to estimate a net count rate.\\
 
 A strong linear relation ($R^2=0.996$) between pulse voltage and MCA channel output was observed, with pulses of a single voltage consistently being binned into one channel on the MCA spectrum, demonstrating the reliability of the pulser and MCA.
