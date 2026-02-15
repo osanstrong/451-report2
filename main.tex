@@ -148,17 +148,16 @@ In this laboratory, we employed the following equipment:
 We used a Canberra Model 2000 Module Rack. This component will be henceforth referred to as the module rack.
 
 \subsubsection{Geiger-Muller Detector}
-In this laboratory, we used a GM Detector, henceforth referred to as the detector. 
-We were unable to locate identifying information on this device.
+In this laboratory, we used a GM Detector, henceforth referred to as the detector, accompanied by a Spectrum Techniques GPI GM Pulse Inverter.
 
 \subsubsection{Multichannel Analyzer}
 We used an Ortec EasyMCA multichannel analyzer, which we will henceforth refer to as the MCA, to validate signal details.
 
 \subsubsection{Radiation Source}
-In this laboratory, we used a 2017 1.0 \micCi cesium-137 beta radiation source, and will henceforth refer to it as the beta source.
+In this laboratory, we used a 2017 1.0 \micCi~$^{137}$Cs beta radiation source, and will henceforth refer to it as the beta source.
 
 \subsubsection{Programmable Power Supply}
-To supply the inverter which follows the detector, we used a Caen N1470AL 2CH High Voltage Programmable Power Supply, henceforth referred to as the power supply.
+To supply the detector and its inverter, we used a Caen N1470AL 2CH High Voltage Programmable Power Supply, henceforth referred to as the power supply.
 
 \subsubsection{Pulser}
 In this laboratory, we used an Ortec Model 480 Pulser, henceforth called the pulser.
@@ -204,8 +203,8 @@ We fed pulser output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\\
 We first logged into the lab computer and started Maestro, ensuring the MCA was connected to the computer before configuring the equipment as shown in Figure~\ref{fig:mat-exp6-setup}.
 We set the amplifier gain to its lowest value, and adjusted the pulser gain to find the maximum attainable pulse voltage, then to achieve approximately 25\% of that pulse voltage.\\
 
-We set the collect time in Maestro to 1 minute before pressing the Start Acquisition button, as shown in Figure~\ref{fig:start-acquisition}
-We then clicked on the spectrum as shown in Figure~\ref{fig:mat-sample-spectrum} to show channel number and count, or right clicked to identify precise peak details as in Figure~\ref{mat-peak-info} to record details such as the centroid of a peak.\\
+We set the collect time in Maestro to 1 minute (under ``Acquire'', ``MCB Properties'') before pressing the Start Acquisition button, as shown in Figure~\ref{fig:mat-start-acquisition}
+We then clicked on the spectrum as shown in Figure~\ref{fig:mat-sample-spectrum} to show channel number and count, or right clicked to identify precise peak details as in Figure~\ref{fig:mat-peak-info} to record details such as the centroid of a peak.\\
 
 \begin{figure}
     \centering
@@ -244,7 +243,7 @@ In this experiment, we measured two series of independent radiation counts, usin
 
 After acquiring the beta source from the lab instructors, we removed the cap from the detector and taped the source to the detector front, with the sticker side of the source facing the center of the detector.
 We then ensure all equipment is connected as in Figure~\ref{fig:mat-exp7-setup}.
-With assistance from the TA to choose an appropriate bias setting for the detector, we then set the power supply to this setting, slowly incrementing the knob one setting at a time to avoid the risk of damaging the detector. (Specifically, using the clear dial at the top: Rotating the dial either changed a digit's value or selected a new digit, with pressing the dial toggling between these two nodes. While selecting the ``VSET'' option, the former function instead switched between setting voltage bias and ramping the voltage to its new setting) \\
+With assistance from the TA to choose an appropriate bias setting for the detector, we then set the power supply to this setting, slowly incrementing the knob one setting at a time to avoid the risk of damaging the detector. (Specifically, using the clear dial at the top: Rotating the dial either changed a digit's value or selected a new digit, with pressing the dial toggling between these two nodes. While selecting the ``VSET'' option, the press function instead switched between setting voltage bias and ramping the voltage to its new setting) \\
 
 Once the detector was ready, we then set the timer on the counter to 30 seconds, started the timer and recorded the number of counts after completion. 
 We repeated this process for 19 further trials, recording the counts from a total of 20 trials each lasting 30 seconds.
@@ -311,7 +310,7 @@ And sample standard deviation:
     s = \sqrt{s^2}
 \end{equation}
 For the 20 trials lasting 30 seconds, a mean count of 364.6 was recorded, with variance 277.727 counts. 
-For the 200 trials lasting 5 seconds, a mean of 58.705 counts were recorded, with variance of 49.315 counts.
+For the 200 trials lasting 5 seconds, a mean of 58.705 counts was recorded, with variance of 49.315 counts.
 
 Using these two `moments', we fit theoretical Normal, Poisson, and Binomial distributions to the data using Method of Moments\cite{kotz_encyclopedia_2006}.
 For the Poisson distribution $Pois(\lambda)$, the theoretical mean $\mu$ is equivalent to the frequency parameter $\lambda$, and we fit ($\hat{\lambda}$) using the sample mean as such:
@@ -365,28 +364,28 @@ Histograms of both series' (20 trials lasting 30 seconds each and 200 trials las
 
 Detector pulses were counted over a period of 5 minutes while attached to the beta source for 5 minutes, and again without the source for 10 minutes.\\
 
-Over the 5-minute (300 second) source period, we observed gross count $n_G$ of 3469, with an uncertainty of $\sigma_G=\sqrt{n_G}=58.90$.
-This yields a gross count rate $f_G=3469\times(300\mathrm{s})^{-1}=11.562\mathrm{s^{-1}}$.
-Since the error of a scaled function $a\times A$ is equivalent to its error scaled $a\times \sigma_A$\cite{tsoulfanidis_measurement_2015}, this yields a frequency uncertainty $\sigma_{f,G}=300^{-1}\times58.90=0.196\mathrm{s^{-1}}$.\\
+Over the 5-minute (300 second) source period, we observed gross count $n_G$ of 3469, with an uncertainty of $\sigma_G=\sqrt{n_G}=58.90~\mathrm{s^{-1}}$.
+This yields a gross count rate $f_G=3469\times(300~\mathrm{s})^{-1}=11.562~\mathrm{s^{-1}}$.
+Since the error of a scaled function $a\times A$ is equivalent to its error scaled $a\times \sigma_A$\cite{tsoulfanidis_measurement_2015}, this yields a frequency uncertainty $\sigma_{f,G}=300^{-1}\times58.90=0.196~\mathrm{s^{-1}}$.\\
 
-Over the 10-minute (600 second) source-free period, we observed a background count $n_B$ of 386, with an uncertainty of $\sigma_B=\sqrt{n_B}=19.647$. 
-This yields a background count rate $f_B=386\times(600\mathrm{s})^{-1}=0.643\mathrm{s^{-1}}$, and an error $\sigma_{f,B}=600^{-1}\times19.647=0.00739\mathrm{s^{-1}}$.\\
+Over the 10-minute (600 second) source-free period, we observed a background count $n_B$ of 386, with an uncertainty of $\sigma_B=\sqrt{n_B}=19.647~\mathrm{s^{-1}}$. 
+This yields a background count rate $f_B=386\times(600~\mathrm{s})^{-1}=0.643~\mathrm{s^{-1}}$, and an error $\sigma_{f,B}=600^{-1}\times19.647=0.00739~\mathrm{s^{-1}}$.\\
 
 Assuming infinite timing precision, we estimated the net activity rate $f_N$ by subtracting $f_B$ from $f_G$:
 \begin{align}
     f_N &= f_G - f_B \\
     &= 11.562 - 0.643 \\
-    f_N &= 10.920 \mathrm{s^{-1}}
+    f_N &= 10.920~\mathrm{s^{-1}}
 \end{align}
 As the variance of a difference $A-B$ is equivalent to the sum of each quantity's variance $\sigma_A^2+\sigma_B^2$\cite{tsoulfanidis_measurement_2015}, we quantified the uncertainty of this measurement:
 \begin{align}
     \sigma_f &= \sqrt{\sigma_{f,G}^2 + \sigma_{f,B}^2} \\
     &= \sqrt{0.196^2 + 0.007^2} \\
-    \sigma_f &= 0.1964 \mathrm{s^{-1}}\\
+    \sigma_f &= 0.1964~\mathrm{s^{-1}}\\
 \end{align}
 
-The beta source's calibrated activity was 1.0 microCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$.
-Notably, this is dramatically higher than the net \emph{observed} activity of $10.920\pm0.196 \mathrm{s^{-1}}$.
+The beta source's calibrated activity was 1.0 microCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}~\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000~\mathrm{s^{-1}}$.
+Notably, this is dramatically higher than the net \emph{observed} activity of $10.920\pm0.196~\mathrm{s^{-1}}$.
 
 
 \FloatBarrier\section{Discussion}\label{sec:disc}
@@ -396,7 +395,7 @@ As expected of pulser output, the amplitudes of pulser output are very consisten
 While we observe a very clear linear relationship ($R^2=0.996$) between pulse amplitude and spectrogram bin as seen in Figure~\ref{fig:exp6-v-v-chan}, the spectrum peak for a given voltage output is extremely consistent, with only a few pulses in a bin higher or lower out of approximately 3600, as can be seen in Figure~\ref{fig:exp6-4v-spec}.
 This confirms the consistency of the pulser and the predictability of MCA output.
 \subsection{Experiment 7}
-As expected, the Poisson distribution appears to appropriately model the count data series, especially for the series with the higher number of trials, but notably the other distributions produce believable fits. The series additionally both have similar variances to the number of counts, reminiscent of the Poisson distribution, which only has one degree of freedom and for which variance corresponds to average counts.\\
+As expected, the Poisson distribution appears to appropriately model the count data series, especially for the series with the higher number of trials, but notably the other distributions produce believable fits. The series additionally both have similar (if slightly lower) variances to the number of counts, reminiscent of the Poisson distribution, which only has one degree of freedom and for which variance corresponds to average counts.\\
 
 Notably, the distribution of 200 5-second trials in Figure~\ref{fig:exp7-5s-hist-v-fits} much more closely resembles theoretical distributions, forming a stable bell curve in contrast to the bimodal distribution seen in Figure~\ref{fig:exp7-30s-hist-v-fits} of the 20 30-second trials.
 This can likely be explained by simple chance, as with so few trials it is not inexplicable that more would have slightly lower or higher than average number of counts than have an average one.\\
@@ -405,7 +404,7 @@ Additionally, the Normal and Bimodal distributions almost entirely overlap; this
 
 Given the convincing Poisson theory of radiation as independent random events of a certain frequency and these results, the Poisson model for radiation count appears to hold.
 \subsection{Experiment 8}
-While a net count rate was observed within $10.920\pm0.196 \mathrm{s^{-1}}$, the calibrated activity of the beta source is 1.0 microCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$, dramatically higher.\\
+While a net count rate was observed within $10.920\pm0.196~\mathrm{s^{-1}}$, the calibrated activity of the beta source is 1.0 \micCi\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}~\mathrm{s^{-1}}\times\mathrm{\frac{1~Ci}{10^6~\mu Ci}}=37,000~\mathrm{s^{-1}}$, dramatically higher.\\
 
 This can likely be explained by the nature of the detector and setup: only a small fraction of the beta particles produced by the source would happen to travel in the direction of the detector, a small fraction of that be absorbed by the thin gas inside the detector rather than the metal casing or passing through entirely, and some fraction of those gas interactions result in a successful voltage discharge to the system. It is thus unsurprising that the rate at which the system recorded detector pulses was a small fraction of the nominal activity of the source.\\
 
@@ -419,8 +418,8 @@ Radiation counts were measured for the same detector and source over 5 minutes, 
 A strong linear relation ($R^2=0.996$) between pulse voltage and MCA channel output was observed, with pulses of a single voltage consistently being binned into one channel on the MCA spectrum, demonstrating the reliability of the pulser and MCA.
 For the detector and beta source, a mean gross count of 364.600 with variance 277.727 was observed over the 20 trials lasting 30 seconds, and over the 200 trials lasting 5 seconds a mean gross count of 58.705 with variance 49.315 was observed.
 Theoretical models were successfully fit to both series, with the series of 200 trials matching theoretical distributions more closely than the 20 trials, which produced a somewhat bimodal distribution.
-In both cases, the expected Poisson model of random counts appeared to sufficiently credibly model experimental data, alongside matching normal and binomial models.
-A net count rate of the source for the beta detector of $10.920\pm0.196 \mathrm{s^{-1}}$ was measured, substantially lower than that of the calibrated source, simultaneously demonstrating an ability to calculate net radiation count rates with usable uncertainty by measuring gross and background radiation count rates, and the limitations of a detector to capture the full activity of a source.\\
+In both cases, the expected Poisson model of random counts appeared to sufficiently credibly model experimental data, alongside matching normal and binomial models, though both cases appeared to display slightly less variance than expected under a Poisson distribution.
+A net count rate of the source for the beta detector of $10.920\pm0.196~\mathrm{s^{-1}}$ was measured, substantially lower than that of the calibrated source, simultaneously demonstrating an ability to calculate net radiation count rates with usable uncertainty by measuring gross and background radiation count rates, and the limitations of a detector to capture the full activity of a source.\\
 
 In all, the application of key statistical techniques like fitting theoretical probability distributions and the propagation of measurement errors were demonstrated successfully, and these results will allow for the effective interpretation of data gathered in future laboratories.
 
@@ -443,8 +442,9 @@ Where a detail could not be identified for a given device, it is replaced with `
         Item & Manufacturer & Model & ID Type & ID Number\\\hline
         Module rack & Canberra (now Mirion)\sref{addr:mirion}& Model 2000 & Inventory \# & NE759377 \\
         Geiger-Muller Detector & \na & \na & \na & \na \\
+        GM Pulse Inverter & Spectrum Techniques\sref{addr:spect} & 2017 GPI & \na & \na \\
         Multichannel Analyzer & Ortec\sref{addr:ortec} & EasyMCA & Inventory \# & P10F79090 \\
-        Radiation Source & Spectrum Technologies\sref{addr:spect} & 2017 1.0\micCi $^{137}$Cs Beta Source & Number & 2037 \\
+        Radiation Source & Spectrum Techniques\sref{addr:spect} & 2017 1.0\micCi $^{137}$Cs Beta Source & Number & 2037 \\
         High Voltage Power Supply & Caen\sref{addr:caen} & N1470AL & Inventory \# & P10G96054 \\
         Pulser & Ortec\sref{addr:ortec} & Model 480 & \na & \na \\
         Oscilloscope & Keysight\sref{addr:keys} & Infiniivision DSO-X 2002A & Inventory \# & P10R03513 \\
@@ -461,6 +461,11 @@ Where a detail could not be identified for a given device, it is replaced with `
         Atlanta, GA;
         Phone: 770.432.2744;
         \url{https://ir.mirion.com/}
+        \item\label{addr:spect}
+        Spectrum Techniques:
+        106 Union Valley Rd, Oak Ridge, TN 37830;
+        Phone: 865.482.9937;
+        \url{https://www.spectrumtechniques.com/}
         \item\label{addr:ortec}
         Advanced Measurement Technology:
         801 South Illinois Avenue,
@@ -470,11 +475,6 @@ Where a detail could not be identified for a given device, it is replaced with `
         Fax: +1.865.483.0396;
         \url{https://www.ortec-online.com};
         Email: ortec.info@ametek.com
-        \item\label{addr:spect}
-        Spectrum Techniques:
-        106 Union Valley Rd, Oak Ridge, TN 37830;
-        Phone: 865.482.9937;
-        \url{https://www.spectrumtechniques.com/}
         \item\label{addr:caen}
         Caen Sp.A.:
         Via della Vetraia, 11, 55049 Viareggio LU - Italy;
