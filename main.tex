@@ -36,6 +36,19 @@
 \pagenumbering{arabic}
 \begin{abstract}
 
+The ability to interpret measurements and quantify the certainty of resulting inferences is crucial to the detection and measurement of radiation. In this laboratory, we performed a series of experiments to demonstrate the variation of certain measurements and methods to model and quantify the uncertainty of random radiation measurements.\\
+
+We recorded spectra of 60-second pulser outputs at different output amplitudes.
+Using a Geiger-Muller detector, we took a series of 20 radiation counts over 30 seconds each, followed by a series of 200 5-second counts, and modeled these results usign Poisson, binomial, and normal distributions.
+We then measured radiation counts for the same detector and source over 5 minutes, followed by a background count of the detector without the source over 10 minutes, and used thes to estimate a net count rate.\\
+
+We observed a strong linear relation ($R^2=0.996$) between pulse voltage and MCA channel output, with pulses of a single voltage consistently being binned into nearly one channel on the MCA spectrum, demonstrating the reliability of the pulser and MCA.
+For the detector and beta source, we observed a mean gross count of 364.600 with variance 277.727 over the 20 trials lasting 30 seconds, and over the 200 trials lasting 5 seconds a mean gross count of 58.705 with variance 49.315.
+We successfully fit the three theoretical models to both series, with the series of 200 trials matching theoretical distributions more closely than the 20 trials, which produced a somewhat bimodal distribution.
+In both cases, the expected Poisson model of random counts appeared to sufficiently credibly model experimental data, alongside matching normal and binomial models.
+We measured a net count rate of the source for the beta detector of $10.920\pm0.196 \mathrm{s^{-1}}$, substantially lower than that of the calibrated source, simultaneously demonstrating an ability to calculate net radiation count rates with usable uncertainty by measuring gross and background radiation count rates, and the limitations of a detector to capture the full activity of a source.\\
+
+We determine the application of key statistical techniques like fitting theoretical probability distributions and the propagation of measurement errors were demonstrated successfully, and these results will allow for the effective interpretation of data gathered in future laboratories.
 \end{abstract}
 
 \section{Introduction and Background}\label{sec:intr}
