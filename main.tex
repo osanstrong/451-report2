@@ -57,7 +57,8 @@ This laboratory investigates the behavior of a Geiger Muller detection in respon
 
 The rest of this report proceeds as follows:
 In the remainder of the introduction, an overview of equipment and theory will be given.
-In Section~\ref{sec:methods}, details on 
+In Section~\ref{sec:methods}, details on equipment and specific procedures follow.
+Section~\ref{sec:results} displays the results of these procedures, Section~\ref{sec:disc} highlights notable observations, and Section~\ref{sec:conc} concludes with important implications and results.
 
 \subsection{Geiger-Muller (GM) Detector}
 In this laboratory we use a Geiger-Muller (GM) Detector.
@@ -104,9 +105,22 @@ The counts could then be modeled using a binomial distribution $Binom(n, p)$, wi
 
 This binomial distribution would have an expected mean of $np$, and standard deviation of $\sqrt{np(1-p)}$.\\
 
-\subsection{Error Propagation}
+\subsubsection{Error Propagation}
 Of course, it is not just the measurement itself which is of interest.
-Given a 
+Given measurement(s) of certain uncertainty, it is typically desired to then calculate some secondary quantity of interest as a function of the uncertain measurements, in which case the uncertainty of that secondary quantity may be quantified as a function of the measurements' own.\\
+
+For example, if a quantity $C$ were a function of two measurements $A$ and $B$ with variances $\sigma^2_A$ and $\sigma^2_B$, added or subtracted from each other:
+\begin{equation}
+    C=A\pm B
+\end{equation}
+then the variance of C would correspond to the sum of these two variances\cite{tsoulfanidis_measurement_2015}:
+\begin{equation}
+    \sigma^2_C = \sigma^2_A + \sigma^2_B
+\end{equation}
+
+Such propagation calculations can be determined for arbitrary functions using the derivative of such a function with respect to any uncertain values\cite{tsoulfanidis_measurement_2015}, but in this lab only addition or subtraction will be considered, in the context of measuring gross and background radiation count rates to estimate a net count rate.
+% For example, when tasked with measuring a net radiation count rate, one might compare a gross measurement of the source $G$ (uncertainty $\sigma_G$) with a measurement of background radiation $B$ (uncertainty $\sigma_B$).
+% In this example, if the net count were a function of these two in that background were subtracted from the 
 
 \section{Experimental Procedure}\label{sec:methods}
 
@@ -239,10 +253,12 @@ Using the gross and background counts, we estimated a net activity and calculate
 
 
 \section{Experimental Results}\label{sec:results}
+In this section, we detail key results from experiments 6, 7, and 8.
 
 %%%% Experiment 6: Multichannel Analyzer
 \FloatBarrier\subsection{Experiment 6: Multichannel Analyzer}
-
+We recorded pulses from the pulser in the MCA for several 60-second trials at different voltages.
+Figure~\ref{fig:exp6-4v-spec} shows the spectrum acquired from a 4~V amplitude pulser output, and Figure~\ref{fig:exp6-v-v-chan} compares the peak location on the spectrum recorded for pulser output of several amplitudes.
 % Plot of the acquired spectrum
 \begin{figure}[!h]
     \centering
@@ -262,18 +278,18 @@ Using the gross and background counts, we estimated a net activity and calculate
 %%%% Experiment 6: Repeated Measurements
 \FloatBarrier\subsection{Statistical Uncertainty of a Series of Independent Measurements}
 
-Two series of count measurements were performed, of 20 trials lasting 30 seconds each and of 200 trials lasting 5 seconds each.
-For both data series, we calculate the sample mean and standard deviation, and use Method of Moments (MoM) to fit experimental results to theoretical Normal, Poisson, and Binomial distributions.\\
+We performed two series of count measurements, one of 20 trials lasting 30 seconds each and one of 200 trials lasting 5 seconds each.
+For both data series, we calculated the sample mean and standard deviation, and used Method of Moments (MoM) to fit experimental results to theoretical Normal, Poisson, and Binomial distributions.\\
 
-For each series, we calculate experimental mean $\bar{x}$ (where $n\in\{20,200\}$ is the number of measurements, and $x_i$ the (count) value measured for trial $i$):
+For each series, we calculated experimental mean $\bar{x}$ (where $n\in\{20,200\}$ is the number of measurements, and $x_i$ the (count) value measured for trial $i$):
 \begin{equation}
     \bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
 \end{equation}
-We then calculate the deviation $d_i$ of each point $x_i$:
+We then calculated the deviation $d_i$ of each point $x_i$:
 \begin{equation}
     d_i = x_i - \bar{x}
 \end{equation}
-Using these deviations we calculate the sample variance\footnote{As this is the variance of a \emph{sample} and not a known population, the sample mean inherently depends on the specific sample itself, removing a degree of freedom. We thus normalize deviation by $n-1$ rather than by $n$.} $s^2$:
+Using these deviations we calculated the sample variance\footnote{As this is the variance of a \emph{sample} and not a known population, the sample mean inherently depends on the specific sample itself, removing a degree of freedom. We thus normalized deviation by $n-1$ rather than by $n$.} $s^2$:
 \begin{equation}
    s^2 = \frac{1}{n-1}\sum_{i=1}^{n}d_i 
 \end{equation}
@@ -281,7 +297,7 @@ And sample standard deviation:
 \begin{equation}
     s = \sqrt{s^2}
 \end{equation}
-For the 20 trials lasting 30 seconds, a mean count of 364.6 was record, with variance 277.727 counts. 
+For the 20 trials lasting 30 seconds, a mean count of 364.6 was recorded, with variance 277.727 counts. 
 For the 200 trials lasting 5 seconds, a mean of 58.705 counts were recorded, with variance of 49.315 counts.
 
 Using these two `moments', we fit theoretical Normal, Poisson, and Binomial distributions to the data using Method of Moments\cite{kotz_encyclopedia_2006}.
@@ -328,8 +344,7 @@ Histograms of both series' (20 trials lasting 30 seconds each and 200 trials las
     \label{fig:exp7-5s-hist-v-fits}
 \end{figure}
 
-Notably, the distribution of 200 5-second trials in Figure~\ref{fig:exp7-5s-hist-v-fits} much more closely resembles theoretical distributions, forming a stable bell curve in contrast to the bimodal distribution seen in Figure~\ref{fig:exp7-30s-hist-v-fits} of the 20 30-second trials.
-Additionally, the Normal and Bimodal distributions almost entirely overlap; this is expected, as at high $n$, Binomial distributions approach that of a Normal distribution with equivalent mean and standard deviation\cite{kotz_encyclopedia_2006}.
+
 
 
 % Experiment 8: The Accuracy of a Single Measurement
@@ -337,20 +352,20 @@ Additionally, the Normal and Bimodal distributions almost entirely overlap; this
 
 Detector pulses were counted over a period of 5 minutes while attached to the Source for 5 minutes, and again without the Source for 10 minutes.\\
 
-Over the 5-minute (300 second) Source period, a gross count $n_G$ of 3469 was observed, with an uncertainty of $\sigma_G=\sqrt{n_G}=58.90$.
+Over the 5-minute (300 second) Source period, we observed gross count $n_G$ of 3469, with an uncertainty of $\sigma_G=\sqrt{n_G}=58.90$.
 This yields a gross count rate $f_G=3469\times(300\mathrm{s})^{-1}=11.562\mathrm{s^{-1}}$.
 Since the error of a scaled function $a\times A$ is equivalent to its error scaled $a\times \sigma_A$\cite{tsoulfanidis_measurement_2015}, this yields a frequency uncertainty $\sigma_{f,G}=300^{-1}\times58.90=0.196\mathrm{s^{-1}}$.\\
 
-Over the 10-minute (600 second) Source-free period, a background count $n_B$ of 386 was observed, with an uncertainty of $\sigma_B=\sqrt{n_B}=19.647$. 
+Over the 10-minute (600 second) Source-free period, we observed a background count $n_B$ of 386, with an uncertainty of $\sigma_B=\sqrt{n_B}=19.647$. 
 This yields a background count rate $f_B=386\times(600\mathrm{s})^{-1}=0.643\mathrm{s^{-1}}$, and an error $\sigma_{f,B}=600^{-1}\times19.647=0.00739\mathrm{s^{-1}}$.\\
 
-Assuming infinite timing precision, we may estimate the net activity rate $f_N$ by subtracting $f_B$ from $f_G$:
+Assuming infinite timing precision, we estimated the net activity rate $f_N$ by subtracting $f_B$ from $f_G$:
 \begin{align}
     f_N &= f_G - f_B \\
     &= 11.562 - 0.643 \\
     f_N &= 10.920 \mathrm{s^{-1}}
 \end{align}
-As the variance of a difference $A-B$ is equivalent to the sum of each quantity's variance $\sigma_A^2+\sigma_B^2$\cite{tsoulfanidis_measurement_2015}, we may quantify the uncertainty of this measurement:
+As the variance of a difference $A-B$ is equivalent to the sum of each quantity's variance $\sigma_A^2+\sigma_B^2$\cite{tsoulfanidis_measurement_2015}, we quantified the uncertainty of this measurement:
 \begin{align}
     \sigma_f &= \sqrt{\sigma_{f,G}^2 + \sigma_{f,B}^2} \\
     &= \sqrt{0.196^2 + 0.007^2} \\
@@ -362,7 +377,40 @@ Notably, this is dramatically higher than the net \emph{observed} activity of $1
 
 
 \FloatBarrier\section{Discussion}\label{sec:disc}
+We may infer several things from the experiments performed, but particularly experiments 7 and 8.
+\subsection{Experiment 6}
+As expected of pulser output, the amplitudes of pulser output are very consistent.
+While we observe a very clear linear relationship ($R^2=0.996$) between pulse amplitude and spectrogram bin as seen in Figure~\ref{fig:exp6-v-v-chan}, the spectrum peak for a given voltage output is extremely consistent, with only a few pulses in a bin higher or lower out of approximately 3600, as can be seen in Figure~\ref{fig:exp6-4v-spec}.
+This confirms the consistency of the pulser and the predictability of MCA output.
+\subsection{Experiment 7}
+As expected, the Poisson distribution appears to appropriately model the count data series, especially for the series with the higher number of trials, but notably the other distributions produce believable fits. The series additionally both have similar variances to the number of counts, reminiscent of the Poisson distribution, which only has one degree of freedom and for which variance corresponds to average counts.\\
+
+Notably, the distribution of 200 5-second trials in Figure~\ref{fig:exp7-5s-hist-v-fits} much more closely resembles theoretical distributions, forming a stable bell curve in contrast to the bimodal distribution seen in Figure~\ref{fig:exp7-30s-hist-v-fits} of the 20 30-second trials.
+This can likely be explained by simple chance, as with so few trials it is not inexplicable that more would have slightly lower or higher than average number of counts than have an average one.\\
+
+Additionally, the Normal and Bimodal distributions almost entirely overlap; this is expected, as at high $n$, Binomial distributions approach that of a Normal distribution with equivalent mean and standard deviation\cite{nist_1366_nodate}.\\
+
+Given the convincing Poisson theory of radiation as independent random events of a certain frequency and these results, the Poisson model for radiation count appears to hold.
+\subsection{Experiment 8}
+While a net count rate was observed within $10.920\pm0.196 \mathrm{s^{-1}}$, the calibrated activity of the beta source is 1.0 microCurie\cite{npre_lab_2_manual_2025}, equivalent to $3.7\times10^{10}\mathrm{s^{-1}}\times\mathrm{\frac{1Ci}{10^6\mu Ci}}=37,000\mathrm{s^{-1}}$, dramatically higher.\\
+
+This can likely be explained by the nature of the detector and setup: only a small fraction of the beta particles produced by the source would happen to travel in the direction of the detector, a small fraction of that be absorbed by the thin gas inside the detector rather than the metal casing or passing through entirely, and some fraction of those gas interactions result in a successful voltage discharge to the system. It is thus unsurprising that the rate at which the system recorded detector pulses was a small fraction of the nominal activity of the source.\\
+
+Additionally, the source was calibrated in 2017: given the $^{137}$Cs half life of roughly 30 years, roughly 80\% of the original activity should remain, though this difference pales to the likely effect of loss between source and detection.
 \section{Conclusions}\label{sec:conc}
+The laboratory was broadly successful. 
+Spectra of 60-second pulser outputs were recorded at different output amplitudes.
+A series of 20 radiation counts were taken by a Geiger-Muller detector of a beta source over 30 seconds each, followed by a series of 200 5-second counts, and modeled by Poisson, binomial, and normal models.
+Radiation counts were measured for the same detector and source over 5 minutes, followed by a background count of the detector without the source over 10 minutes, and used to estimate a net count rate.\\
+
+A strong linear relation ($R^2=0.996$) between pulse voltage and MCA channel output was observed, with pulses of a single voltage consistently being binned into one channel on the MCA spectrum, demonstrating the reliability of the pulser and MCA.
+For the detector and beta source, a mean gross count of 364.600 with variance 277.727 was observed over the 20 trials lasting 30 seconds, and over the 200 trials lasting 5 seconds a mean gross count of 58.705 with variance 49.315 was observed.
+Theoretical models were successfully fit to both series, with the series of 200 trials matching theoretical distributions more closely than the 20 trials, which produced a somewhat bimodal distribution.
+In both cases, the expected Poisson model of random counts appeared to sufficiently credibly model experimental data, alongside matching normal and binomial models.
+A net count rate of the source for the beta detector of $10.920\pm0.196 \mathrm{s^{-1}}$ was measured, substantially lower than that of the calibrated source, simultaneously demonstrating an ability to calculate net radiation count rates with usable uncertainty by measuring gross and background radiation count rates, and the limitations of a detector to capture the full activity of a source.\\
+
+In all, the application of key statistical techniques like fitting theoretical probability distributions and the propagation of measurement errors were demonstrated successfully, and these results will allow for the effective interpretation of data gathered in future laboratories.
+
 
 \appendix
 \section{Equipment Details}\label{app:equip}
