@@ -21,14 +21,43 @@
 
 \usepackage{placeins} % FloatBarrier
 \usepackage{amsmath} % align
-\begin{document}
+\usepackage{hyperref} % URLS
+\usepackage{enumitem} % fine control over table listings
 
+%%%% Shorthands
+\newcommand{\micCi}{$\mathrm{\mu Ci}$} % Microcuries
+
+\begin{document}
+\pagenumbering{gobble}
 \maketitle
+\pagebreak
+\tableofcontents
+\pagebreak
+\pagenumbering{arabic}
 \begin{abstract}
 
 \end{abstract}
 
 \section{Introduction and Background}\label{sec:intr}
+% In the detection of radiation, it is particularly crucial to understand the detector itself.
+% There are several types of radiation detectors, each of which best suited for different environments and types of radiation.
+% Of particular interest is the Geiger-Muller detector, a type of detector using low-pressure gas in a voltage gap to detect radiation\cite{tsoulfanidis_measurement_2015}.
+% When a particle 
+A key requirement in detecting radiation is the ability to interpret measurements.
+In a perfect world, a person wishing to work with radiation would be perfectly and acutely aware of the nature of every material, understanding the presence and interaction of every particle of any kind of radiation.
+In the real world, just as macroscopic phenomena and objects must be inferred from visual and sensory information, the precise behavior microscopic phenomena like radiation interaction must be inferred through devices which respond to those interactions.
+The field of statistics exists to illustrate this gap and quantify exactly what can be estimated from limited physical measurements.\\
+
+Consider the radioactivity of a material sample.
+Even when modeling the sample as emitting a consistent, deterministic rate of particles, it is at the very least \emph{unreasonable} to know exactly when each particle is released, and that exact rate.
+Instead, a radiation detector would produce a predictable stimulus response to some of this radiation.
+A statistical model would then, based on a theory of how the overall ``population'' of radiation events behave and relate to a given ``sample'' of detections, predict something about that population based on a sample, and quantify exactly how certain one can be about that estimate. (Or at least, the related ``population'' of how the detector will respond to radiation).\\
+
+This laboratory investigates the behavior of a Geiger Muller detection in response to a beta radiation source, and compares certain statistical models of its behavior in order to describe the behavior's uncertainty. \\
+
+The rest of this report proceeds as follows:
+In the remainder of the introduction, an overview of equipment and theory will be given.
+In Section~\ref{sec:methods}, details on 
 
 \subsection{Geiger-Muller (GM) Detector}
 In this laboratory we use a Geiger-Muller (GM) Detector.
@@ -75,74 +104,78 @@ The counts could then be modeled using a binomial distribution $Binom(n, p)$, wi
 
 This binomial distribution would have an expected mean of $np$, and standard deviation of $\sqrt{np(1-p)}$.\\
 
+\subsection{Error Propagation}
+Of course, it is not just the measurement itself which is of interest.
+Given a 
+
 \section{Experimental Procedure}\label{sec:methods}
 
+In this section, we detail the equipment used and the experiments performed in this laboratory.
+Further equipment details are given in Appendix~\ref{app:equip}.
+
 \subsection{Equipment}
-In this laboratory, we employ the following equipment:
+In this laboratory, we employed the following equipment:
 
 \subsubsection{Module Rack}
 
-In this experiment, a Canberra Model 2000 module rack was used (inventory number NE759377). This component will be henceforth referred to as the Module Rack.
+We used a Canberra Model 2000 Module Rack. This component will be henceforth referred to as the module rack.
 
 \subsubsection{Geiger-Muller Detector}
-In this laboratory, we use a GM Detector, henceforth referred to as the Detector. 
+In this laboratory, we used a GM Detector, henceforth referred to as the detector. 
 We were unable to locate identifying information on this device.
 
 \subsubsection{Multichannel Analyzer}
-We use an Ortec EasyMCA MCA, with inventory number P10F79090. This MCA will henceforth be referred to the MCA, or Multichannel Analyzer.
+We used an Ortec EasyMCA multichannel analyzer, which we will henceforth refer to as the MCA, to validate signal details.
 
 \subsubsection{Radiation Source}
-In this laboratory, we use a 2017 1.0 microCurie cesium-137 beta radiation source, numbered 2037, and will henceforth refer to this as the Source.
+In this laboratory, we used a 2017 1.0 \micCi cesium-137 beta radiation source, and will henceforth refer to it as the beta source.
 
 \subsubsection{Programmable Power Supply}
-To supply the inverter which follows the Detector, we use a Caen N1470AL 2CH High Voltage Programmable Power Supply (Inventory \# P10G96054), henceforth referred to as the Power Supply.
+To supply the inverter which follows the Detector, we used a Caen N1470AL 2CH High Voltage Programmable Power Supply, henceforth referred to as the power supply.
 
 \subsubsection{Pulser}
-In this laboratory, we use an Ortec Model 480 Pulser.
-This particular pulser will henceforth be referred to as the Pulser, to distinguish from pulsers in general.
+In this laboratory, we used an Ortec Model 480 Pulser, henceforth called the pulser.
 A serial number tag was not attached externally, and the module could not be removed to identify the Illinois property number on its side.
 
 
 \subsubsection{Oscilloscope}
 
-In this laboratory, we use an Infiniivision DSO-X 2002A Oscilloscope (inventory \# P10R03513).
-The particular oscilloscope used in this experiment will henceforth be referred to as the Oscilloscope.
-
+In this laboratory, we used an Infiniivision DSO-X 2002A Oscilloscope.
+The particular oscilloscope used in this experiment will henceforth be referred to as the oscilloscope.
 
 \subsubsection{Counter}
 
-We use an Ortec Model 871 Timer-Counter (serial \# 1024), which will henceforth be referred to as the Counter.
+We used an Ortec Model 871 Timer-Counter, which will henceforth be referred to as the counter.
 
 \subsubsection{Preamplifier}
-In this laboratory, we use an Ortec 142PC preamplifier (serial \# 2780, revision 17), henceforth referred to as the Preamplifier.
+In this laboratory, we used an Ortec 142PC Preamplifier, henceforth referred to as the preamplifier.
 No Illinois property number was identifiable on the Preamplifier.
 
 \subsubsection{Amplifier}
 
-We use an Ortec Model 590A Amplifier and Timing Single Channel Analyzer (AMP \& TSCA, serial \# 16076205), and is henceforth referred to as the Amplifier.
+We used an Ortec Model 590A Amplifier and Timing Single Channel Analyzer, henceforth referred to as the Amplifier.
 
 \subsubsection{Computer}
 
-In this laboratory, we use a Dell Precision 3630, henceforth referred to as the Computer.
-The Computer's Engineering IT ID is EWS 20426, and Dell service ID is 6TT6243.
+In this laboratory, we used a Dell Precision 3630, henceforth referred to as the Computer.
 
 \subsubsection{Software: Maestro}
 
-To interpret and display output from the MCA, we use the Maestro software provided by Ortect.\cite{ortec_maestro_2012}
+To interpret and display output from the MCA, we used the Maestro software provided by Ortec.\cite{ortec_maestro_2012}
 
 \subsection{Experiment 6: The Multichannel Analyzer}
 
-In this experiment, we use the Pulser to replicate the output of a spectroscopy detector.
-We feed its output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\cite{npre_lab_2_manual_2025}\\
+In this experiment, we used the Pulser to replicate the output of a spectroscopy detector.
+We fed its output to the MCA as shown in Figure~\ref{fig:mat-exp6-setup}.\\
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\figwidth]{figs/Mat0_Exp6-setup.png}
-    \caption{The setup for Experiment 6. Sourced from Lab Manual 2.\cite{npre_lab_2_manual_2025}}
+    \caption{The setup for Experiment 6. Sourced from lab manual 2.\cite{npre_lab_2_manual_2025}}
     \label{fig:mat-exp6-setup}
 \end{figure}
 
-We first log into the lab computer and start Maestro, ensuring the MCA is connected to the computer before configuring the equipment as shown in Figure~\ref{fig:mat-exp6-setup}.
-We set the Amplifier gain to its lowest value, and adjust the Pulser gain to find the maximum attainable pulse voltage, then to achieve approximately 25\% of that pulse voltage.\\
+We first logged into the lab computer and start Maestro, ensuring the MCA is connected to the computer before configuring the equipment as shown in Figure~\ref{fig:mat-exp6-setup}.
+We set the Amplifier gain to its lowest value, and adjusted the Pulser gain to find the maximum attainable pulse voltage, then to achieve approximately 25\% of that pulse voltage.\\
 
 We set the collect time in Maestro to 1 minute before pressing the Start Acquisition button, as shown in Figure~\ref{fig:start-acquisition}
 We then click on the spectrum as shown in Figure~\ref{fig:mat-sample-spectrum} to show channel number and count, or right click to identify precise peak details as in Figure~\ref{mat-peak-info} to record details such as the centroid of a peak.\\
@@ -248,6 +281,9 @@ And sample standard deviation:
 \begin{equation}
     s = \sqrt{s^2}
 \end{equation}
+For the 20 trials lasting 30 seconds, a mean count of 364.6 was record, with variance 277.727 counts. 
+For the 200 trials lasting 5 seconds, a mean of 58.705 counts were recorded, with variance of 49.315 counts.
+
 Using these two `moments', we fit theoretical Normal, Poisson, and Binomial distributions to the data using Method of Moments\cite{kotz_encyclopedia_2006}.
 For the Poisson distribution $Pois(\lambda)$, the theoretical mean $\mu$ is equivalent to the frequency parameter $\lambda$, and we fit ($\hat{\lambda}$) using the sample mean as such:
 \begin{align}
@@ -327,6 +363,77 @@ Notably, this is dramatically higher than the net \emph{observed} activity of $1
 
 \FloatBarrier\section{Discussion}\label{sec:disc}
 \section{Conclusions}\label{sec:conc}
+
+\appendix
+\section{Equipment Details}\label{app:equip}
+
+\newcommand{\na}{$N/A$}
+\newcommand{\sref}[1]{$^{\ref{#1}}$}
+\FloatBarrier
+Further details of equipment are listed in Table~\ref{tab:equip}.
+Where a detail could not be identified for a given device, it is replaced with ``\na''.
+\begin{table}[!h]
+    \centering
+    \small
+    \caption{Details of the equipment used in this laboratory.}
+    \label{tab:equip}
+    \scriptsize
+    \begin{tabular}{c|cccc}
+        Item & Manufacturer & Model & ID Type & ID Number\\\hline
+        Module rack & Canberra (now Mirion)\sref{addr:mirion}& Model 2000 & Inventory \# & NE759377 \\
+        Geiger-Muller Detector & \na & \na & \na & \na \\
+        Multichannel Analyzer & Ortec\sref{addr:ortec} & EasyMCA & Inventory \# & P10F79090 \\
+        Radiation Source & Spectrum Technologies\sref{addr:spect} & 2017 1.0\micCi $^{137}$Cs Beta Source & Number & 2037 \\
+        High Voltage Power Supply & Caen\sref{addr:caen} & N1470AL & Inventory \# & P10G96054 \\
+        Pulser & Ortec\sref{addr:ortec} & Model 480 & \na & \na \\
+        Oscilloscope & Keysight\sref{addr:keys} & Infiniivision DSO-X 2002A & Inventory \# & P10R03513 \\
+        Counter & Ortec\sref{addr:ortec} & Model 871 & Serial \# & 1024 \\
+        Preamplifier & Ortec\sref{addr:ortec} & Model 142PC & Serial \# & 2780r17 \\
+        Amplifier & Ortec\sref{addr:ortec} & Model 590A & Serial \# & 16076205 \\
+        Computer & Dell\sref{addr:dell} & Precision 360 & Eng. IT ID \# & EWS 20426 \\
+
+    \end{tabular}
+    \begin{enumerate}[label=\alph*]
+        \item\label{addr:mirion}
+        Mirion Technologies, Inc.:
+        1218 Menlo Drive,
+        Atlanta, GA;
+        Phone: 770.432.2744;
+        \url{https://ir.mirion.com/}
+        \item\label{addr:ortec}
+        Advanced Measurement Technology:
+        801 South Illinois Avenue,
+        Oak Ridge, Tennessee 37830,
+        United States;
+        Phone: +1.865.482.4411;
+        Fax: +1.865.483.0396;
+        \url{https://www.ortec-online.com};
+        Email: ortec.info@ametek.com
+        \item\label{addr:spect}
+        Spectrum Techniques:
+        106 Union Valley Rd, Oak Ridge, TN 37830;
+        Phone: 865.482.9937;
+        \url{https://www.spectrumtechniques.com/}
+        \item\label{addr:caen}
+        Caen Sp.A.:
+        Via della Vetraia, 11, 55049 Viareggio LU - Italy;
+        Phone: +39 0584 388398;
+        \url{https://www.caen.it/}
+        \item\label{addr:keys}
+        Keysight Technologies: 
+        1900 Garden of the Gods Road, Colorado Springs, CO 80907-3423 United States;
+        Phone: 1 800 829-4444;
+        \url{https://www.keysight.com}
+        \item\label{addr:dell}
+        Dell Technologies:
+        Dell Technologies
+        1 Dell Way
+        Round Rock, TX 78664.;
+        Phone: 1-877-275-3355;
+        \url{https://www.dell.com/en-us/lp/contact-us}
+    \end{enumerate}
+\end{table}
+\FloatBarrier
 
 % \bibliographystyle{sty/ieeetran}
 \printbibliography
